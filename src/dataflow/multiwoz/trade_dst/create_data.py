@@ -72,7 +72,7 @@ def _create_replacement_pair(line):
 
 REPLACEMENTS = [
     _create_replacement_pair(line)
-    for line in open(os.path.join(os.path.dirname(__file__), "mapping.pair"), "r")
+    for line in open(os.path.join("/Users/williamgerard/code/task_oriented_dialogue_as_dataflow_synthesis/src/dataflow/multiwoz/trade_dst", "mapping.pair"), "r")
 ]
 
 

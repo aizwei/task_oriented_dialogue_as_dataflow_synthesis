@@ -59,8 +59,12 @@ def try_round_trip(lispress_str: str) -> str:
     If it is not valid, returns the original string unmodified.
     """
     try:
-        return _round_trip(lispress_str)
+        print("trying round trip")
+        result = _round_trip(lispress_str)
+        print("done round trip success")
+        return result 
     except Exception:  # pylint: disable=W0703
+        print("CAUGHT EXCEPTION, NOT VALID")
         return lispress_str
 
 
