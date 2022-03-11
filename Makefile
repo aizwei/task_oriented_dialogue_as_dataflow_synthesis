@@ -1,5 +1,5 @@
 .PHONY: all format format-check pylint mypy test
-
+current_dir=$(CURDIR)
 all: mypy
 
 # sort imports and auto-format python code
@@ -18,3 +18,9 @@ mypy: pylint
 
 test: mypy $(shell find tests/ -name "*.py" -type f)
 	python -m pytest -n auto --durations=0 tests/
+
+docker-dev-image:
+	docker build -t dataflow-graph-program-image -f Dockerfile .
+
+run-dev-image:
+	docker run --name dataflow_graph_program_dev_container -t -d --mount src=$(current_dir),target=/dataflow,type=bind dataflow-graph-program-image /bin/bash

@@ -1,0 +1,168 @@
+import os
+from ctypes import PyDLL, RTLD_GLOBAL, c_char_p
+
+curdir = dir_path = os.path.dirname(os.path.realpath(__file__))
+dll = PyDLL(f"{curdir}/lispress_to_graph_program.so", RTLD_GLOBAL)
+argv_t = c_char_p * 2
+argv = argv_t("lispress_to_graph_program.so".encode('utf-8'), None)
+dll.caml_startup(argv)
+
+# We export the names explicitly otherwise mypy gets confused and
+# generates spurious errors
+from lispress_to_graph_program import (
+    reset_state, 
+    wrap_some_value_and_exponent,
+    wrap_some_bool, 
+    true,
+    false,
+    zero,
+    one,
+    two,
+    three,
+    four,
+    five,
+    six,
+    seven,
+    eight,
+    nine,
+    ten,
+    add_int,
+    multiply_int,
+    negate_int,
+    do_super,
+    data_super,
+    action_super,
+    predicate_super,
+    syntax_category,
+    nonsyntax_category,
+    upstream_direction,
+    downstream_direction,
+    one_path_sequential_navigation,
+    data_navigation,
+    action_navigation,
+    predicate_navigation,
+    nonsyntax_navigation,
+    value_exponent,
+    partial_desc_do,
+    partial_desc_data,
+    partial_desc_action,
+    partial_desc_predicate,
+    partial_desc_nonsyntax,
+    category_characteristic,
+    supertype_characteristic,
+    subtype_characteristic,
+    truth_value_characteristic,
+    value_characteristic,
+    exponent_characteristic,
+    register_set_num_1,
+    register_set_num_2,
+    characteristic_equal_conditional_test,
+    all_characteristics_node_equal_conditional_test,
+    connectable_with_saved_conditional_test,
+    traversable_conditional_test,
+    addable_conditional_test,
+    addable_from_registers_conditional_test,
+    true_cond,
+    false_cond,
+    arg_rank,
+    empty_rank,
+    record_register_characteristic, 
+    conditional,
+    save_location_bool,
+    clear_location_bool,
+    traverse,
+    add_neighbor,
+    add_neighbor_from_registers,
+    connect_with_saved_location,
+    clear_register_set,
+    create_argument,
+    empty_arguments,
+    prepend_argument,
+    add_lispress_function, 
+    log_state 
+)
+
+def save_location(): 
+    save_location_bool(true())
+
+def clear_location():
+    clear_location_bool(false())
+
+primitives = [
+    wrap_some_value_and_exponent,
+    wrap_some_bool, 
+    true,
+    false,
+    zero,
+    one,
+    two,
+    three,
+    four,
+    five,
+    six,
+    seven,
+    eight,
+    nine,
+    ten,
+    add_int,
+    multiply_int,
+    negate_int,
+    do_super,
+    data_super,
+    action_super,
+    predicate_super,
+    syntax_category,
+    nonsyntax_category,
+    upstream_direction,
+    downstream_direction,
+    one_path_sequential_navigation,
+    data_navigation,
+    action_navigation,
+    predicate_navigation,
+    nonsyntax_navigation,
+    value_exponent,
+    partial_desc_do,
+    partial_desc_data,
+    partial_desc_action,
+    partial_desc_predicate,
+    partial_desc_nonsyntax,
+    category_characteristic,
+    supertype_characteristic,
+    subtype_characteristic,
+    truth_value_characteristic,
+    value_characteristic,
+    exponent_characteristic,
+    register_set_num_1,
+    register_set_num_2,
+    characteristic_equal_conditional_test,
+    all_characteristics_node_equal_conditional_test,
+    connectable_with_saved_conditional_test,
+    traversable_conditional_test,
+    addable_conditional_test,
+    addable_from_registers_conditional_test,
+    true_cond,
+    false_cond,
+    arg_rank,
+    empty_rank,
+    record_register_characteristic, 
+    conditional,
+    save_location,
+    clear_location,
+    traverse,
+    add_neighbor,
+    add_neighbor_from_registers,
+    connect_with_saved_location,
+    clear_register_set
+]
+
+lispress_specific = [
+    create_argument,
+    empty_arguments,
+    prepend_argument,
+    add_lispress_function
+]
+
+other = [
+    reset_state,
+    log_state
+]
